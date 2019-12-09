@@ -22,6 +22,7 @@ import (
 	// "os"
 
 	"sort"
+	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -95,7 +96,7 @@ func NewCommand(c *cobra.Command, path string) *Command {
 		Path:             path,
 		Description:      c.Long,
 		Synopsis:         c.Short,
-		Example:          c.Example,
+		Examples:         SplitExamples(c.Example),
 		Options:          NewOptions(c.NonInheritedFlags()),
 		InheritedOptions: NewOptions(c.InheritedFlags()),
 		Usage:            c.Use,
@@ -118,4 +119,48 @@ func (a Commands) Len() int      { return len(a) }
 func (a Commands) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
 func (a Commands) Less(i, j int) bool {
 	return a[i].Path < a[j].Path
+}
+
+const (
+	start = iota
+	title
+	content
+)
+
+func SplitExamples(examples string) (result []Example) {
+	lines := strings.Split(examples, "\n")
+	pos := start
+	currentExample := Example{}
+	for _, line := range lines {
+		line = escapeXml(strings.Trim(line, " "))
+		if len(line) == 0 {
+			continue
+		}
+
+		if line[0] == '#' {
+			if pos == title {
+				line = strings.TrimLeft(line, "# ")
+				currentExample.Title += "\n " + line
+			} else {
+				if len(currentExample.Title) > 0 || len(currentExample.Content) > 0 {
+					result = append(result, currentExample)
+				}
+				currentExample = Example{}
+				line = strings.TrimLeft(line, "# ")
+				currentExample.Title = line
+				pos = title
+			}
+		} else {
+			if pos == content {
+				currentExample.Content += "\n" + line
+			} else {
+				currentExample.Content += line
+				pos = content
+			}
+		}
+	}
+	if len(currentExample.Title) > 0 || len(currentExample.Content) > 0 {
+		result = append(result, currentExample)
+	}
+	return
 }

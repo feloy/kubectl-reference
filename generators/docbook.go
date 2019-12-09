@@ -128,19 +128,17 @@ func (o *Command) AsDocbook(w io.Writer, config *ToCCommand) {
 	}
 
 	// Examples
-	if len(o.Example) > 0 {
+	if len(o.Examples) > 0 {
 		fmt.Fprint(w, `      <refsection>
         <title>Examples</title>
 `)
+		for _, example := range o.Examples {
+			fmt.Fprintf(w, "          <para>%s</para>\n", example.Title)
+			fmt.Fprint(w, "          <programlisting>")
+			fmt.Fprintf(w, "%s", example.Content)
+			fmt.Fprint(w, "</programlisting>\n")
 
-		fmt.Fprint(w, "          <programlisting>\n")
-		examples := o.Example
-		lines := strings.Split(examples, "\n")
-		for _, line := range lines {
-			fmt.Fprintf(w, "%s\n", escapeXml(line))
 		}
-
-		fmt.Fprint(w, "          </programlisting>\n")
 		fmt.Fprint(w, `      </refsection>
 `)
 	}

@@ -67,17 +67,22 @@ type Option struct {
 	Type         string `yaml:",omitempty"`
 }
 
+type Example struct {
+	Title   string `yaml:",omitempty"`
+	Content string `yaml:",omitempty"`
+}
+
 type Commands []*Command
 type Command struct {
-	Name             string   `yaml:",omitempty"` // done
-	Path             string   `yaml:",omitempty"`
-	Synopsis         string   `yaml:",omitempty"` // done -> refpurpose
-	Description      string   `yaml:",omitempty"` // done -> refsection{Description}
-	Options          Options  `yaml:",omitempty"`
-	InheritedOptions Options  `yaml:"inherited_options,omitempty"`
-	Example          string   `yaml:",omitempty"`
-	SeeAlso          []string `yaml:"see_also,omitempty"` // not used
-	Usage            string   `yaml:",omitempty"`         // not used
+	Name             string    `yaml:",omitempty"` // done
+	Path             string    `yaml:",omitempty"`
+	Synopsis         string    `yaml:",omitempty"` // done -> refpurpose
+	Description      string    `yaml:",omitempty"` // done -> refsection{Description}
+	Options          Options   `yaml:",omitempty"`
+	InheritedOptions Options   `yaml:"inherited_options,omitempty"`
+	Examples         []Example `yaml:",omitempty"`
+	SeeAlso          []string  `yaml:"see_also,omitempty"` // not used
+	Usage            string    `yaml:",omitempty"`         // not used
 }
 
 type Manifest struct {
