@@ -78,12 +78,7 @@ func AsDocbook() {
 
     <legalnotice>
       <para>The tool used to generate this document is available at
-      https://github.com/feloy/kubernetes-resources-reference</para>
-    </legalnotice>
-
-    <legalnotice>
-      <para>The OpenAPI spec file used to generate this document is available
-      at https://github.com/kubernetes/kubernetes</para>
+      https://github.com/feloy/kubectl-reference</para>
     </legalnotice>
   </bookinfo>
 `)
