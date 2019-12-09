@@ -6,27 +6,27 @@ categories:
     optionsgroups:
     - options:
       - name: filename
-        required: true
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: dry-run
+      - name: edit
+      - name: record
+      - name: save-config
+      - name: windows-line-endings
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
+    - options:
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
-    - options:
-      - name: edit
-      - name: windows-line-endings
-      - name: record
-      - name: recursive
     - name: Other options
       options:
-      - name: kustomize
       - name: raw
-      - name: selector
   - name: create/clusterrole
     usage: clusterrole NAME --verb=verb --resource=resource.group [--resource-name=resourcename]
       [--dry-run]
@@ -43,16 +43,16 @@ categories:
       - name: non-resource-url
     - options:
       - name: aggregation-rule
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: validate
+      - name: allow-missing-template-keys
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
   - name: create/clusterrolebinding
     usage: clusterrolebinding NAME --clusterrole=NAME [--user=username] [--group=groupname]
       [--serviceaccount=namespace:serviceaccountname] [--dry-run]
@@ -67,16 +67,16 @@ categories:
         usage: Usernames to bind to the clusterrole
       - name: group
       - name: serviceaccount
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -90,19 +90,19 @@ categories:
       - name: from-env-file
       - name: from-file
       - name: from-literal
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
-      - name: append-hash
       - name: generator
   - name: create/cronjob
     usage: cronjob NAME --image=image --schedule='0/5 * * * ?' -- [COMMAND] [args...]
@@ -123,19 +123,17 @@ categories:
         required: true
       - name: schedule
         required: true
+      - name: restart
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
-    - name: Other options
-      options:
-      - name: restart
   - name: create/deployment
     usage: deployment NAME --image=image [--dry-run]
     args:
@@ -144,16 +142,16 @@ categories:
     - options:
       - name: image
         required: true
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -175,31 +173,31 @@ categories:
       - name: image
         required: true
       - name: from
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
   - name: create/namespace
     usage: namespace NAME [--dry-run]
     args:
     - name: NAME
     optionsgroups:
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -214,16 +212,16 @@ categories:
       - name: min-available
         required: true
       - name: max-unavailable
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -238,16 +236,16 @@ categories:
       - name: global-default
       - name: description
       - name: preemption-policy
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -259,16 +257,16 @@ categories:
     - options:
       - name: hard
       - name: scopes
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -285,16 +283,16 @@ categories:
         required: true
     - options:
       - name: resource-name
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
   - name: create/rolebinding
     usage: rolebinding NAME --clusterrole=NAME|--role=NAME [--user=username] [--group=groupname]
       [--serviceaccount=namespace:serviceaccountname] [--dry-run]
@@ -308,16 +306,16 @@ categories:
       - name: user
       - name: group
       - name: serviceaccount
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -335,19 +333,20 @@ categories:
       - name: from-literal
     - options:
       - name: type
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: dry-run
+      - name: save-config
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
-      - name: append-hash
       - name: generator
   - name: create/secret/docker-registry
     usage: docker-registry NAME --docker-username=user --docker-password=password
@@ -366,19 +365,20 @@ categories:
       - name: docker-server
     - options:
       - name: from-file
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: dry-run
+      - name: save-config
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
-      - name: append-hash
       - name: generator
   - name: create/secret/tls
     usage: tls NAME --cert=path/to/cert/file --key=path/to/key/file [--dry-run]
@@ -390,19 +390,19 @@ categories:
         required: true
       - name: key
         required: true
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
-      - name: append-hash
       - name: generator
   - name: create/service
     usage: service
@@ -414,16 +414,16 @@ categories:
     - options:
       - name: tcp
       - name: clusterip
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -436,16 +436,16 @@ categories:
       - name: external-name
         required: true
       - name: tcp
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -456,16 +456,16 @@ categories:
     optionsgroups:
     - options:
       - name: tcp
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -477,16 +477,16 @@ categories:
     - options:
       - name: tcp
       - name: node-port
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -495,16 +495,16 @@ categories:
     args:
     - name: NAME
     optionsgroups:
+    - name: Switches
+      options:
+      - name: dry-run
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
     - name: Output
       options:
       - name: output
       - name: template
-      - name: allow-missing-template-keys
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: validate
-      - name: save-config
     - name: Other options
       options:
       - name: generator
@@ -517,29 +517,28 @@ categories:
       choice: opt
       rep: repeat
     optionsgroups:
-    - name: Switches
-      options:
-      - name: all-namespaces
-      - name: export
-      - name: ignore-not-found
-      - name: no-headers
-      - name: output-watch-events
-      - name: recursive
     - options:
-      - name: show-kind
-      - name: show-labels
-      - name: use-openapi-print-columns
-      - name: watch
-      - name: watch-only
-    - options:
-      - name: allow-missing-template-keys
-      - name: server-print
-    - name: Selection
-      options:
       - name: filename
       - name: kustomize
       - name: selector
       - name: field-selector
+    - name: Switches
+      options:
+      - name: all-namespaces
+      - name: recursive
+      - name: watch
+      - name: export
+      - name: ignore-not-found
+      - name: no-headers
+      - name: output-watch-events
+    - options:
+      - name: show-kind
+      - name: show-labels
+      - name: use-openapi-print-columns
+      - name: watch-only
+    - options:
+      - name: allow-missing-template-keys
+      - name: server-print
     - name: Output
       options:
       - name: output
@@ -565,26 +564,9 @@ categories:
       choice: opt
       rep: repeat
     optionsgroups:
-    - name: Switches
-      options:
-      - name: attach
-      - name: command
-      - name: dry-run
-      - name: expose
-      - name: force
-      - name: leave-stdin-open
     - options:
-      - name: quiet
-      - name: record
-      - name: recursive
-      - name: rm
-      - name: save-config
-      - name: stdin
-      - name: tty
-      - name: wait
-    - options:
-      - name: allow-missing-template-keys
-      - name: cascade
+      - name: filename
+      - name: kustomize
     - name: Resource attributes
       options:
       - name: replicas
@@ -605,10 +587,28 @@ categories:
       - name: hostport
       - name: limits
       - name: requests
+    - name: Switches
+      options:
+      - name: recursive
+      - name: stdin
+      - name: tty
+      - name: attach
+      - name: command
+      - name: dry-run
+      - name: expose
+      - name: force
+    - options:
+      - name: leave-stdin-open
+      - name: quiet
+      - name: record
+      - name: rm
+      - name: save-config
+      - name: wait
+    - options:
+      - name: allow-missing-template-keys
+      - name: cascade
     - name: Other options
       options:
-      - name: filename
-      - name: kustomize
       - name: output
       - name: template
     - options:
@@ -624,13 +624,9 @@ categories:
       [--target-port=number-or-name] [--name=name] [--external-ip=external-ip-of-service]
       [--type=type]
     optionsgroups:
-    - name: Switches
-      options:
-      - name: dry-run
-      - name: record
-      - name: recursive
-      - name: save-config
-      - name: allow-missing-template-keys
+    - options:
+      - name: filename
+      - name: kustomize
     - name: Service attributes
       options:
       - name: name
@@ -648,10 +644,15 @@ categories:
     - options:
       - name: protocol
       - name: session-affinity
+    - name: Switches
+      options:
+      - name: recursive
+      - name: dry-run
+      - name: record
+      - name: save-config
+      - name: allow-missing-template-keys
     - name: Other options
       options:
-      - name: filename
-      - name: kustomize
       - name: generator
       - name: overrides
     - options:
@@ -666,22 +667,22 @@ categories:
       choice: opt
       rep: repeat
     optionsgroups:
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: field-selector
     - name: Switches
       options:
-      - name: all
       - name: all-namespaces
+      - name: recursive
+      - name: all
       - name: force
       - name: ignore-not-found
       - name: now
-      - name: recursive
       - name: cascade
       - name: wait
-    - name: Selection
-      options:
-      - name: selector
-      - name: field-selector
-      - name: filename
-      - name: kustomize
     - name: Other options
       options:
       - name: grace-period
@@ -697,15 +698,16 @@ categories:
     - options:
       - name: filename
       - name: kustomize
+      - name: selector
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: force
       - name: force-conflicts
       - name: prune
       - name: record
-      - name: recursive
     - options:
       - name: server-dry-run
       - name: server-side
@@ -727,7 +729,6 @@ categories:
       - name: grace-period
       - name: prune-whitelist
     - options:
-      - name: selector
       - name: timeout
   - name: apply/edit-last-applied
     usage: edit-last-applied (RESOURCE/NAME | -f FILENAME)
@@ -739,8 +740,8 @@ categories:
       - name: kustomize
     - name: Switches
       options:
-      - name: record
       - name: recursive
+      - name: record
       - name: windows-line-endings
       - name: allow-missing-template-keys
     - name: Output
@@ -772,8 +773,8 @@ categories:
       - name: selector
     - name: Switches
       options:
-      - name: all
       - name: recursive
+      - name: all
     - name: Output
       options:
       - name: output
@@ -794,12 +795,12 @@ categories:
       - name: field-selector
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: local
       - name: overwrite
       - name: record
-      - name: recursive
     - options:
       - name: allow-missing-template-keys
     - name: Other options
@@ -824,16 +825,18 @@ categories:
       - name: kustomize
     - name: Switches
       options:
+      - name: recursive
       - name: dry-run
       - name: record
-      - name: recursive
       - name: save-config
       - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
     - name: Other options
       options:
       - name: generator
-      - name: output
-      - name: template
   - name: convert
     usage: convert -f FILENAME
     optionsgroups:
@@ -859,8 +862,8 @@ categories:
       - name: kustomize
     - name: Switches
       options:
-      - name: force-conflicts
       - name: recursive
+      - name: force-conflicts
       - name: server-side
     - name: Other options
       options:
@@ -875,9 +878,9 @@ categories:
       - name: kustomize
     - name: Switches
       options:
+      - name: recursive
       - name: output-patch
       - name: record
-      - name: recursive
       - name: save-config
       - name: windows-line-endings
     - options:
@@ -906,13 +909,13 @@ categories:
       - name: resource-version
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: list
       - name: local
       - name: overwrite
       - name: record
-      - name: recursive
     - options:
       - name: allow-missing-template-keys
     - name: Output
@@ -934,10 +937,10 @@ categories:
       - name: kustomize
     - name: Switches
       options:
+      - name: recursive
       - name: dry-run
       - name: local
       - name: record
-      - name: recursive
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -951,8 +954,8 @@ categories:
       - name: kustomize
     - name: Switches
       options:
-      - name: force
       - name: recursive
+      - name: force
       - name: save-config
       - name: wait
     - options:
@@ -1060,8 +1063,8 @@ categories:
       - name: to-revision
     - name: Switches
       options:
-      - name: dry-run
       - name: recursive
+      - name: dry-run
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1087,9 +1090,9 @@ categories:
       - name: resource-version
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: record
-      - name: recursive
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1117,11 +1120,11 @@ categories:
       - name: containers
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: list
       - name: local
-      - name: recursive
       - name: resolve
     - options:
       - name: allow-missing-template-keys
@@ -1145,11 +1148,11 @@ categories:
       - name: selector
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: local
       - name: record
-      - name: recursive
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1172,11 +1175,11 @@ categories:
       - name: containers
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: local
       - name: record
-      - name: recursive
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1217,11 +1220,11 @@ categories:
       - name: kustomize
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: local
       - name: record
-      - name: recursive
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1247,10 +1250,10 @@ categories:
       - name: selector
     - name: Switches
       options:
+      - name: recursive
       - name: all
       - name: dry-run
       - name: local
-      - name: recursive
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1270,8 +1273,8 @@ categories:
       - name: field-selector
     - name: Switches
       options:
-      - name: all
       - name: all-namespaces
+      - name: all
       - name: local
       - name: allow-missing-template-keys
       - name: recursive
@@ -1303,10 +1306,10 @@ categories:
     optionsgroups:
     - options:
       - name: subresource
+      - name: all-namespaces
       - name: quiet
       - name: list
       - name: no-headers
-      - name: all-namespaces
   - name: auth/reconcile
     usage: reconcile -f FILENAME
     optionsgroups:
@@ -1318,8 +1321,8 @@ categories:
       - name: remove-extra-subjects
     - name: Switches
       options:
-      - name: dry-run
       - name: recursive
+      - name: dry-run
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1477,8 +1480,8 @@ categories:
       - name: kustomize
     - name: Switches
       options:
-      - name: force
       - name: recursive
+      - name: force
       - name: allow-missing-template-keys
     - name: Output
       options:
@@ -1494,8 +1497,8 @@ categories:
       - name: kustomize
     - name: Switches
       options:
-      - name: force
       - name: recursive
+      - name: force
       - name: allow-missing-template-keys
     - name: Output
       options:
