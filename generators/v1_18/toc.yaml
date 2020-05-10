@@ -11,7 +11,6 @@ categories:
     - name: Switches
       options:
       - name: recursive
-      - name: dry-run
       - name: edit
       - name: record
       - name: save-config
@@ -19,17 +18,18 @@ categories:
     - options:
       - name: allow-missing-template-keys
       - name: validate
-    - options:
+    - {}
     - name: Output
       options:
       - name: output
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: raw
   - name: create/clusterrole
     usage: clusterrole NAME --verb=verb --resource=resource.group [--resource-name=resourcename]
-      [--dry-run]
+      [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -45,7 +45,6 @@ categories:
       - name: aggregation-rule
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: validate
       - name: allow-missing-template-keys
@@ -53,9 +52,12 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: create/clusterrolebinding
     usage: clusterrolebinding NAME --clusterrole=NAME [--user=username] [--group=groupname]
-      [--serviceaccount=namespace:serviceaccountname] [--dry-run]
+      [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -69,7 +71,6 @@ categories:
       - name: serviceaccount
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -79,10 +80,11 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/configmap
     usage: configmap NAME [--from-file=[key=]source] [--from-literal=key1=value1]
-      [--dry-run]
+      [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -93,7 +95,6 @@ categories:
     - name: Switches
       options:
       - name: append-hash
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -103,6 +104,7 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/cronjob
     usage: cronjob NAME --image=image --schedule='0/5 * * * ?' -- [COMMAND] [args...]
@@ -126,25 +128,6 @@ categories:
       - name: restart
     - name: Switches
       options:
-      - name: dry-run
-      - name: save-config
-      - name: allow-missing-template-keys
-      - name: validate
-    - name: Output
-      options:
-      - name: output
-      - name: template
-  - name: create/deployment
-    usage: deployment NAME --image=image [--dry-run]
-    args:
-    - name: NAME
-    optionsgroups:
-    - options:
-      - name: image
-        required: true
-    - name: Switches
-      options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -154,6 +137,27 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
+  - name: create/deployment
+    usage: deployment NAME --image=image [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: image
+        required: true
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
       - name: generator
   - name: create/job
     usage: job NAME --image=image [--from=cronjob/name] -- [COMMAND] [args...]
@@ -175,22 +179,6 @@ categories:
       - name: from
     - name: Switches
       options:
-      - name: dry-run
-      - name: save-config
-      - name: allow-missing-template-keys
-      - name: validate
-    - name: Output
-      options:
-      - name: output
-      - name: template
-  - name: create/namespace
-    usage: namespace NAME [--dry-run]
-    args:
-    - name: NAME
-    optionsgroups:
-    - name: Switches
-      options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -200,9 +188,27 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
+  - name: create/namespace
+    usage: namespace NAME [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
       - name: generator
   - name: create/poddisruptionbudget
-    usage: poddisruptionbudget NAME --selector=SELECTOR --min-available=N [--dry-run]
+    usage: poddisruptionbudget NAME --selector=SELECTOR --min-available=N [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -214,7 +220,6 @@ categories:
       - name: max-unavailable
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -224,9 +229,10 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/priorityclass
-    usage: priorityclass NAME --value=VALUE --global-default=BOOL [--dry-run]
+    usage: priorityclass NAME --value=VALUE --global-default=BOOL [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -238,7 +244,6 @@ categories:
       - name: preemption-policy
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -248,9 +253,10 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/quota
-    usage: quota NAME [--hard=key1=value1,key2=value2] [--scopes=Scope1,Scope2] [--dry-run=bool]
+    usage: quota NAME [--hard=key1=value1,key2=value2] [--scopes=Scope1,Scope2] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -259,7 +265,6 @@ categories:
       - name: scopes
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -269,10 +274,11 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/role
     usage: role NAME --verb=verb --resource=resource.group/subresource [--resource-name=resourcename]
-      [--dry-run]
+      [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -285,7 +291,6 @@ categories:
       - name: resource-name
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -293,9 +298,12 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: create/rolebinding
     usage: rolebinding NAME --clusterrole=NAME|--role=NAME [--user=username] [--group=groupname]
-      [--serviceaccount=namespace:serviceaccountname] [--dry-run]
+      [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -308,7 +316,6 @@ categories:
       - name: serviceaccount
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -318,12 +325,13 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/secret
     usage: secret
   - name: create/secret/generic
     usage: generic NAME [--type=string] [--from-file=[key=]source] [--from-literal=key1=value1]
-      [--dry-run]
+      [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -336,7 +344,6 @@ categories:
     - name: Switches
       options:
       - name: append-hash
-      - name: dry-run
       - name: save-config
     - options:
       - name: allow-missing-template-keys
@@ -347,10 +354,11 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/secret/docker-registry
     usage: docker-registry NAME --docker-username=user --docker-password=password
-      --docker-email=email [--docker-server=string] [--from-literal=key1=value1] [--dry-run]
+      --docker-email=email [--docker-server=string] [--from-literal=key1=value1] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -368,7 +376,6 @@ categories:
     - name: Switches
       options:
       - name: append-hash
-      - name: dry-run
       - name: save-config
     - options:
       - name: allow-missing-template-keys
@@ -379,9 +386,10 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/secret/tls
-    usage: tls NAME --cert=path/to/cert/file --key=path/to/key/file [--dry-run]
+    usage: tls NAME --cert=path/to/cert/file --key=path/to/key/file [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -393,7 +401,6 @@ categories:
     - name: Switches
       options:
       - name: append-hash
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -403,11 +410,12 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/service
     usage: service
   - name: create/service/clusterip
-    usage: clusterip NAME [--tcp=<port>:<targetPort>] [--dry-run]
+    usage: clusterip NAME [--tcp=<port>:<targetPort>] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -416,7 +424,6 @@ categories:
       - name: clusterip
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -426,9 +433,10 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/service/externalname
-    usage: externalname NAME --external-name external.name [--dry-run]
+    usage: externalname NAME --external-name external.name [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -438,7 +446,6 @@ categories:
       - name: tcp
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -448,9 +455,10 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/service/loadbalancer
-    usage: loadbalancer NAME [--tcp=port:targetPort] [--dry-run]
+    usage: loadbalancer NAME [--tcp=port:targetPort] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -458,7 +466,6 @@ categories:
       - name: tcp
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -468,9 +475,10 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/service/nodeport
-    usage: nodeport NAME [--tcp=port:targetPort] [--dry-run]
+    usage: nodeport NAME [--tcp=port:targetPort] [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
@@ -479,7 +487,6 @@ categories:
       - name: node-port
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -489,15 +496,15 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: create/serviceaccount
-    usage: serviceaccount NAME [--dry-run]
+    usage: serviceaccount NAME [--dry-run=server|client|none]
     args:
     - name: NAME
     optionsgroups:
     - name: Switches
       options:
-      - name: dry-run
       - name: save-config
       - name: allow-missing-template-keys
       - name: validate
@@ -507,6 +514,7 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: get
     usage: get [(-o|--output=)json|yaml|wide|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...]
@@ -550,8 +558,8 @@ categories:
       - name: chunk-size
       - name: raw
   - name: run
-    usage: run NAME --image=image [--env="key=value"] [--port=port] [--replicas=replicas]
-      [--dry-run=bool] [--overrides=inline-json] [--command] -- [COMMAND] [args...]
+    usage: run NAME --image=image [--env="key=value"] [--port=port] [--dry-run=server|client]
+      [--overrides=inline-json] [--command] -- [COMMAND] [args...]
     args:
     - name: NAME
     - name: --
@@ -594,7 +602,6 @@ categories:
       - name: tty
       - name: attach
       - name: command
-      - name: dry-run
       - name: expose
       - name: force
     - options:
@@ -619,6 +626,7 @@ categories:
       - name: service-overrides
     - options:
       - name: timeout
+      - name: dry-run
   - name: expose
     usage: expose (-f FILENAME | TYPE NAME) [--port=port] [--protocol=TCP|UDP|SCTP]
       [--target-port=number-or-name] [--name=name] [--external-ip=external-ip-of-service]
@@ -647,7 +655,6 @@ categories:
     - name: Switches
       options:
       - name: recursive
-      - name: dry-run
       - name: record
       - name: save-config
       - name: allow-missing-template-keys
@@ -658,6 +665,8 @@ categories:
     - options:
       - name: output
       - name: template
+    - options:
+      - name: dry-run
   - name: delete
     usage: delete ([-f FILENAME] | [-k DIRECTORY] | TYPE [(NAME | -l label | --all)])
     args:
@@ -685,8 +694,10 @@ categories:
       - name: wait
     - name: Other options
       options:
+      - name: dry-run
       - name: grace-period
       - name: timeout
+    - options:
       - name: output
       - name: raw
   include: _getting_started.md
@@ -703,7 +714,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: force
       - name: force-conflicts
       - name: prune
@@ -730,6 +740,7 @@ categories:
       - name: prune-whitelist
     - options:
       - name: timeout
+      - name: dry-run
   - name: apply/edit-last-applied
     usage: edit-last-applied (RESOURCE/NAME | -f FILENAME)
     args:
@@ -756,12 +767,14 @@ categories:
     - name: Switches
       options:
       - name: create-annotation
-      - name: dry-run
       - name: allow-missing-template-keys
     - name: Output
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: apply/view-last-applied
     usage: view-last-applied (TYPE [NAME | -l label] | TYPE/NAME | -f FILENAME)
     args:
@@ -797,7 +810,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: local
       - name: overwrite
       - name: record
@@ -808,6 +820,7 @@ categories:
       - name: resource-version
       - name: output
       - name: template
+      - name: dry-run
   - name: autoscale
     usage: autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [--min=MINPODS] --max=MAXPODS
       [--cpu-percent=CPU]
@@ -826,7 +839,6 @@ categories:
     - name: Switches
       options:
       - name: recursive
-      - name: dry-run
       - name: record
       - name: save-config
       - name: allow-missing-template-keys
@@ -836,6 +848,7 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: generator
   - name: convert
     usage: convert -f FILENAME
@@ -911,7 +924,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: list
       - name: local
       - name: overwrite
@@ -922,6 +934,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: patch
     usage: patch (-f FILENAME | TYPE NAME) -p PATCH
     args:
@@ -938,7 +953,6 @@ categories:
     - name: Switches
       options:
       - name: recursive
-      - name: dry-run
       - name: local
       - name: record
       - name: allow-missing-template-keys
@@ -946,6 +960,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: replace
     usage: replace -f FILENAME
     optionsgroups:
@@ -968,6 +985,7 @@ categories:
       - name: template
     - name: Other options
       options:
+      - name: dry-run
       - name: grace-period
       - name: raw
       - name: timeout
@@ -1064,12 +1082,14 @@ categories:
     - name: Switches
       options:
       - name: recursive
-      - name: dry-run
       - name: allow-missing-template-keys
     - name: Output
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: scale
     usage: scale [--resource-version=version] [--current-replicas=count] --replicas=COUNT
       (-f FILENAME | TYPE NAME)
@@ -1122,7 +1142,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: list
       - name: local
       - name: resolve
@@ -1133,6 +1152,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: set/image
     usage: image (-f FILENAME | TYPE NAME) CONTAINER_NAME_1=CONTAINER_IMAGE_1 ...
       CONTAINER_NAME_N=CONTAINER_IMAGE_N
@@ -1150,7 +1172,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: local
       - name: record
       - name: allow-missing-template-keys
@@ -1158,6 +1179,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: set/resources
     usage: resources (-f FILENAME | TYPE NAME)  ([--limits=LIMITS & --requests=REQUESTS]
     args:
@@ -1177,7 +1201,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: local
       - name: record
       - name: allow-missing-template-keys
@@ -1185,6 +1208,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: set/selector
     usage: selector (-f FILENAME | TYPE NAME) EXPRESSIONS [--resource-version=version]
     args:
@@ -1198,7 +1224,6 @@ categories:
     - name: Switches
       options:
       - name: all
-      - name: dry-run
       - name: local
       - name: record
     - options:
@@ -1208,6 +1233,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: set/serviceaccount
     usage: serviceaccount (-f FILENAME | TYPE NAME) SERVICE_ACCOUNT
     args:
@@ -1222,7 +1250,6 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: local
       - name: record
       - name: allow-missing-template-keys
@@ -1230,9 +1257,12 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: set/subject
     usage: subject (-f FILENAME | TYPE NAME) [--user=username] [--group=groupname]
-      [--serviceaccount=namespace:serviceaccountname] [--dry-run]
+      [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]
     args:
     - name: TYPE
     - name: NAME
@@ -1252,13 +1282,15 @@ categories:
       options:
       - name: recursive
       - name: all
-      - name: dry-run
       - name: local
       - name: allow-missing-template-keys
     - name: Output
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: wait
     usage: wait ([-f FILENAME] | resource.group/resource.name | resource.group [(-l
       label | --all)]) [--for=delete|--for condition=available]
@@ -1322,12 +1354,14 @@ categories:
     - name: Switches
       options:
       - name: recursive
-      - name: dry-run
       - name: allow-missing-template-keys
     - name: Output
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: cp
     usage: cp <file-spec-src> <file-spec-dest>
     args:
@@ -1354,7 +1388,7 @@ categories:
   - name: exec
     usage: exec (POD | TYPE/NAME) [-c CONTAINER] [flags] -- COMMAND [args...]
     args:
-    - name: POD | TYPE/NAME
+    - name: POD | TYPE/NAME | -f FILENAME
     - name: --
       end: true
     - name: COMMAND
@@ -1365,6 +1399,7 @@ categories:
       rep: repeat
     optionsgroups:
     - options:
+      - name: filename
       - name: container
       - name: stdin
       - name: tty
@@ -1540,13 +1575,16 @@ categories:
     - name: Switches
       options:
       - name: delete-local-data
-      - name: dry-run
+      - name: disable-eviction
       - name: force
       - name: ignore-daemonsets
     - name: Other options
       options:
+      - name: dry-run
       - name: grace-period
+    - options:
       - name: timeout
+      - name: skip-wait-for-delete-timeout
   - name: taint
     usage: taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1 ... KEY_N=VAL_N:TAINT_EFFECT_N
     args:
@@ -1567,6 +1605,9 @@ categories:
       options:
       - name: output
       - name: template
+    - name: Other options
+      options:
+      - name: dry-run
   - name: uncordon
     usage: uncordon NODE
     args:
@@ -1577,8 +1618,6 @@ categories:
       - name: dry-run
 - name: KUBECTL SETTINGS AND USAGE
   commands:
-  - name: alpha
-    usage: alpha
   - name: api-resources
     usage: api-resources
     optionsgroups:
@@ -1631,7 +1670,7 @@ categories:
       - name: set-raw-bytes
   - name: config/set-cluster
     usage: set-cluster NAME [--server=server] [--certificate-authority=path/to/certificate/authority]
-      [--insecure-skip-tls-verify=true]
+      [--insecure-skip-tls-verify=true] [--tls-server-name=example.com]
     args:
     - name: NAME
     optionsgroups:
@@ -1763,3 +1802,35 @@ categories:
       - name: client
       - name: short
       - name: output
+- name: Alpha commands
+  commands:
+  - name: alpha
+    usage: alpha
+  - name: alpha/debug
+    usage: debug NAME --image=image [ -- COMMAND [args...] ]
+    args:
+    - name: NAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: image
+        required: true
+      - name: container
+      - name: target
+    - options:
+      - name: env
+      - name: image-pull-policy
+    - name: Switches
+      options:
+      - name: stdin
+      - name: tty
+      - name: arguments-only
+      - name: attach
+      - name: quiet
