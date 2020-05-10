@@ -20,9 +20,9 @@ clean:
 
 docbook: clean build/index.xml
 
-build/index.xml: $(wildcard *.go **/*.go) generators/v1_17/toc.yaml
+build/index.xml: $(wildcard *.go **/*.go) generators/v1_18/toc.yaml
 	mkdir -p build
-	LANG= go run main.go --kubernetes-version v1_17 > build/index.xml
+	LANG= go run main.go --kubernetes-version v1_18 > build/index.xml
 
 FORMAT ?= USletter
 pdf: build/index.xml
