@@ -213,6 +213,10 @@ func (op *Option) AsDocbook(w io.Writer, config *ToCOption) {
 		value := optionName + "<replaceable>value</replaceable>"
 		fmt.Fprintf(w, "          <arg rep=\"repeat\" choice=\"plain\"><arg choice=\"%s\">%s</arg></arg>\n", choice, value)
 
+	case "stringToString":
+		value := optionName + "<replaceable>key1=value1</replaceable><arg rep=\"repeat\" choice=\"plain\"><arg choice=\"opt\">,<replaceable>keyN=valueN</replaceable></arg></arg>"
+		fmt.Fprintf(w, "          <arg choice=\"plain\"><arg choice=\"%s\">%s</arg></arg>\n", choice, value)
+
 	case "stringSlice":
 		value := optionName + "<replaceable>value1</replaceable><arg rep=\"repeat\" choice=\"plain\"><arg choice=\"opt\">,<replaceable>valueN</replaceable></arg></arg>"
 		fmt.Fprintf(w, "          <arg choice=\"plain\"><arg choice=\"%s\">%s</arg></arg>\n", choice, value)
