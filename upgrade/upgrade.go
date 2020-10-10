@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package main
+package upgrade
 
 import (
 	"flag"
@@ -30,7 +30,7 @@ func getTocFile() string {
 	return filepath.Join(*generators.GenKubectlDir, *generators.KubernetesVersion, "toc.yaml")
 }
 
-func main() {
+func Upgrade() {
 	flag.Parse()
 
 	toc := generators.ToC{}

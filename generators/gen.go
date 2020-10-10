@@ -58,7 +58,7 @@ func AsDocbook() {
   <bookinfo>
     <title>Kubectl Reference</title>
 
-    <subtitle>v1.18.0</subtitle>
+    <subtitle>v1.19</subtitle>
 
     <releaseinfo>By the Kubernetes Authors</releaseinfo>
 
