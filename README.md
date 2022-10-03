@@ -13,7 +13,7 @@ $ make pdf
 $ make pdf FORMAT=A4
 ```
 
-# Get a printed book at:
+## Get a printed book at:
 
 - US: https://www.amazon.com/dp/B088N615VS
 - UK: https://www.amazon.co.uk/dp/B088N615VS
