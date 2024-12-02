@@ -1,0 +1,2137 @@
+categories:
+- name: Basic Commands (Beginner)
+  commands:
+  - name: create
+    usage: create -f FILENAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: edit
+      - name: record
+      - name: save-config
+      - name: windows-line-endings
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
+    - {}
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: raw
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/clusterrole
+    usage: clusterrole NAME --verb=verb --resource=resource.group [--resource-name=resourcename]
+      [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: verb
+        required: true
+      - name: resource
+        required: true
+    - options:
+      - name: resource-name
+      - name: non-resource-url
+    - options:
+      - name: aggregation-rule
+    - name: Switches
+      options:
+      - name: save-config
+      - name: validate
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/clusterrolebinding
+    usage: clusterrolebinding NAME --clusterrole=NAME [--user=username] [--group=groupname]
+      [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: clusterrole
+        required: true
+      - name: user
+        type: stringArray
+        usage: Usernames to bind to the clusterrole
+      - name: group
+      - name: serviceaccount
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/configmap
+    usage: configmap NAME [--from-file=[key=]source] [--from-literal=key1=value1]
+      [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: from-env-file
+      - name: from-file
+      - name: from-literal
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/cronjob
+    usage: cronjob NAME --image=image --schedule='0/5 * * * ?' -- [COMMAND] [args...]
+    args:
+    - name: NAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+      choice: opt
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: image
+        required: true
+      - name: schedule
+        required: true
+      - name: restart
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/deployment
+    usage: deployment NAME --image=image -- [COMMAND] [args...]
+    args:
+    - name: NAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+      choice: opt
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: image
+        required: true
+      - name: port
+      - name: replicas
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/job
+    usage: job NAME --image=image [--from=cronjob/name] -- [COMMAND] [args...]
+    args:
+    - name: NAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+      choice: opt
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: image
+        required: true
+      - name: from
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/namespace
+    usage: namespace NAME [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/poddisruptionbudget
+    usage: poddisruptionbudget NAME --selector=SELECTOR --min-available=N [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: selector
+        required: true
+      - name: min-available
+        required: true
+      - name: max-unavailable
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/priorityclass
+    usage: priorityclass NAME --value=VALUE --global-default=BOOL [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: value
+        required: true
+      - name: global-default
+      - name: description
+      - name: preemption-policy
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/quota
+    usage: quota NAME [--hard=key1=value1,key2=value2] [--scopes=Scope1,Scope2] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: hard
+      - name: scopes
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/role
+    usage: role NAME --verb=verb --resource=resource.group/subresource [--resource-name=resourcename]
+      [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: verb
+        required: true
+      - name: resource
+        required: true
+    - options:
+      - name: resource-name
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/rolebinding
+    usage: rolebinding NAME --clusterrole=NAME|--role=NAME [--user=username] [--group=groupname]
+      [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: clusterrole
+      - name: role
+    - options:
+      - name: user
+      - name: group
+      - name: serviceaccount
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/secret
+    usage: secret (docker-registry | generic | tls)
+  - name: create/secret/generic
+    usage: generic NAME [--type=string] [--from-file=[key=]source] [--from-literal=key1=value1]
+      [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: from-env-file
+      - name: from-file
+      - name: from-literal
+    - options:
+      - name: type
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: save-config
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/secret/docker-registry
+    usage: docker-registry NAME --docker-username=user --docker-password=password
+      --docker-email=email [--docker-server=string] [--from-file=[key=]source] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: docker-username
+        required: true
+      - name: docker-password
+        required: true
+    - options:
+      - name: docker-email
+        required: true
+      - name: docker-server
+    - options:
+      - name: from-file
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: save-config
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/secret/tls
+    usage: tls NAME --cert=path/to/cert/file --key=path/to/key/file [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: cert
+        required: true
+      - name: key
+        required: true
+    - name: Switches
+      options:
+      - name: append-hash
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/service
+    usage: service
+  - name: create/service/clusterip
+    usage: clusterip NAME [--tcp=<port>:<targetPort>] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: tcp
+      - name: clusterip
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/service/externalname
+    usage: externalname NAME --external-name external.name [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: external-name
+        required: true
+      - name: tcp
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/service/loadbalancer
+    usage: loadbalancer NAME [--tcp=port:targetPort] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: tcp
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/service/nodeport
+    usage: nodeport NAME [--tcp=port:targetPort] [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: tcp
+      - name: node-port
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: create/serviceaccount
+    usage: serviceaccount NAME [--dry-run=server|client|none]
+    args:
+    - name: NAME
+    optionsgroups:
+    - name: Switches
+      options:
+      - name: save-config
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+      - name: field-manager
+      - name: show-managed-fields
+  - name: expose
+    usage: expose (-f FILENAME | TYPE NAME) [--port=port] [--protocol=TCP|UDP|SCTP]
+      [--target-port=number-or-name] [--name=name] [--external-ip=external-ip-of-service]
+      [--type=type]
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Service attributes
+      options:
+      - name: name
+      - name: labels
+      - name: selector
+      - name: type
+    - options:
+      - name: cluster-ip
+      - name: external-ip
+      - name: load-balancer-ip
+    - options:
+      - name: port
+      - name: target-port
+      - name: container-port
+    - options:
+      - name: protocol
+      - name: session-affinity
+    - name: Switches
+      options:
+      - name: recursive
+      - name: record
+      - name: save-config
+      - name: allow-missing-template-keys
+    - name: Other options
+      options:
+      - name: generator
+      - name: overrides
+      - name: override-type
+    - options:
+      - name: output
+      - name: template
+    - options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: run
+    usage: run NAME --image=image [--env="key=value"] [--port=port] [--dry-run=server|client]
+      [--overrides=inline-json] [--command] -- [COMMAND] [args...]
+    args:
+    - name: NAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+      choice: opt
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Resource attributes
+      options:
+      - name: replicas
+      - name: labels
+      - name: annotations
+      - name: grace-period
+      - name: schedule
+    - options:
+      - name: pod-running-timeout
+      - name: restart
+      - name: serviceaccount
+    - name: Container attributes
+      options:
+      - name: image
+      - name: image-pull-policy
+      - name: env
+    - options:
+      - name: port
+      - name: hostport
+      - name: limits
+      - name: requests
+    - name: Switches
+      options:
+      - name: recursive
+      - name: stdin
+      - name: tty
+      - name: attach
+      - name: command
+      - name: expose
+      - name: force
+    - options:
+      - name: leave-stdin-open
+      - name: privileged
+      - name: quiet
+      - name: record
+      - name: rm
+      - name: save-config
+      - name: wait
+    - options:
+      - name: allow-missing-template-keys
+      - name: cascade
+    - name: Other options
+      options:
+      - name: output
+      - name: template
+    - options:
+      - name: generator
+      - name: service-generator
+    - options:
+      - name: overrides
+      - name: override-type
+      - name: service-overrides
+    - options:
+      - name: timeout
+      - name: dry-run
+    - options:
+      - name: field-manager
+      - name: show-managed-fields
+  - name: set
+    usage: set SUBCOMMAND
+  - name: set/env
+    usage: env RESOURCE/NAME KEY_1=VAL_1 ... KEY_N=VAL_N
+    args:
+    - name: RESOURCE/NAME
+    - name: key=val
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: env
+      - name: from
+      - name: keys
+      - name: prefix
+    - name: Selections
+      options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: containers
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: list
+      - name: local
+      - name: resolve
+    - options:
+      - name: allow-missing-template-keys
+      - name: overwrite
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: set/image
+    usage: image (-f FILENAME | TYPE NAME) CONTAINER_NAME_1=CONTAINER_IMAGE_1 ...
+      CONTAINER_NAME_N=CONTAINER_IMAGE_N
+    args:
+    - name: TYPE
+    - name: NAME
+    - name: containerName=image
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: local
+      - name: record
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: set/resources
+    usage: resources (-f FILENAME | TYPE NAME)  ([--limits=LIMITS & --requests=REQUESTS]
+    args:
+    - name: TYPE
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: limits
+      - name: requests
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: containers
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: local
+      - name: record
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: set/selector
+    usage: selector (-f FILENAME | TYPE NAME) EXPRESSIONS [--resource-version=version]
+    args:
+    - name: TYPE
+    - name: NAME
+    - name: EXPRESSIONS
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: resource-version
+    - name: Switches
+      options:
+      - name: all
+      - name: local
+      - name: record
+    - options:
+      - name: allow-missing-template-keys
+      - name: recursive
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: set/serviceaccount
+    usage: serviceaccount (-f FILENAME | TYPE NAME) SERVICE_ACCOUNT
+    args:
+    - name: TYPE
+    - name: NAME
+    - name: serviceAccount
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: local
+      - name: record
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: set/subject
+    usage: subject (-f FILENAME | TYPE NAME) [--user=username] [--group=groupname]
+      [--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none]
+    args:
+    - name: TYPE
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: user
+        type: stringArray
+        usage: UserUsernames to bind to the role
+      - name: group
+      - name: serviceaccount
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: local
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+- name: Basic Commands (Intermediate)
+  commands:
+  - name: explain
+    usage: explain TYPE [--recursive=FALSE|TRUE] [--api-version=api-version-group]
+      [--output=plaintext|plaintext-openapiv2]
+    args:
+    - name: RESOURCE
+    optionsgroups:
+    - options:
+      - name: api-version
+      - name: recursive
+      - name: output
+  - name: get
+    usage: get [(-o|--output=)json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file|custom-columns|custom-columns-file|wide]
+      (TYPE[.VERSION][.GROUP] [NAME | -l label] | TYPE[.VERSION][.GROUP]/NAME ...)
+      [flags]
+    args:
+    - name: TYPE[.VERSION][.GROUP][/]NAME
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: field-selector
+    - name: Switches
+      options:
+      - name: all-namespaces
+      - name: recursive
+      - name: watch
+      - name: ignore-not-found
+      - name: no-headers
+      - name: output-watch-events
+    - options:
+      - name: show-kind
+      - name: show-labels
+      - name: use-openapi-print-columns
+      - name: watch-only
+    - options:
+      - name: allow-missing-template-keys
+      - name: server-print
+    - name: Output
+      options:
+      - name: output
+      - name: label-columns
+      - name: sort-by
+      - name: template
+    - name: Other options
+      options:
+      - name: chunk-size
+      - name: raw
+      - name: show-managed-fields
+      - name: subresource
+  - name: edit
+    usage: edit (RESOURCE/NAME | -f FILENAME)
+    args:
+    - name: RESOURCE/NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: output-patch
+      - name: record
+      - name: save-config
+      - name: windows-line-endings
+    - options:
+      - name: allow-missing-template-keys
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: show-managed-fields
+      - name: subresource
+  - name: delete
+    usage: delete ([-f FILENAME] | [-k DIRECTORY] | TYPE [(NAME | -l label | --all)])
+    args:
+    - name: TYPE[,TYPE...]
+      choice: opt
+    - name: NAME
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: field-selector
+    - name: Switches
+      options:
+      - name: all-namespaces
+      - name: recursive
+      - name: all
+      - name: force
+      - name: ignore-not-found
+      - name: now
+      - name: cascade
+      - name: wait
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: grace-period
+      - name: timeout
+    - options:
+      - name: output
+      - name: raw
+      - name: interactive
+- name: Deploy Commands
+  commands:
+  - name: rollout
+    usage: rollout SUBCOMMAND
+  - name: rollout/history
+    usage: history (TYPE NAME | TYPE/NAME) [flags]
+    args:
+    - name: TYPE[/]NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: revision
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      - name: selector
+      - name: show-managed-fields
+  - name: rollout/pause
+    usage: pause RESOURCE
+    args:
+    - name: RESOURCE
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: selector
+      - name: show-managed-fields
+  - name: rollout/restart
+    usage: restart RESOURCE
+    args:
+    - name: RESOURCE
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: selector
+      - name: show-managed-fields
+  - name: rollout/resume
+    usage: resume RESOURCE
+    args:
+    - name: RESOURCE
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: selector
+      - name: show-managed-fields
+  - name: rollout/status
+    usage: status (TYPE NAME | TYPE/NAME) [flags]
+    args:
+    - name: TYPE[/]NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: revision
+      - name: timeout
+    - name: Switches
+      options:
+      - name: recursive
+      - name: watch
+      - name: selector
+  - name: rollout/undo
+    usage: undo (TYPE NAME | TYPE/NAME) [flags]
+    args:
+    - name: TYPE[/]NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: to-revision
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: selector
+      - name: show-managed-fields
+  - name: scale
+    usage: scale [--resource-version=version] [--current-replicas=count] --replicas=COUNT
+      (-f FILENAME | TYPE NAME)
+    args:
+    - name: TYPE
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: replicas
+        required: true
+      - name: current-replicas
+      - name: timeout
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: resource-version
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: record
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: show-managed-fields
+  - name: autoscale
+    usage: autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [--min=MINPODS] --max=MAXPODS
+      [--cpu-percent=CPU]
+    args:
+    - name: TYPE[/]NAME
+    optionsgroups:
+    - options:
+      - name: name
+      - name: min
+      - name: max
+      - name: cpu-percent
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: record
+      - name: save-config
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: generator
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: show-managed-fields
+- name: Cluster Management Commands
+  commands:
+  - name: certificate
+    usage: certificate SUBCOMMAND
+  - name: certificate/approve
+    usage: approve (-f FILENAME | NAME)
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: force
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+      - name: show-managed-fields
+  - name: certificate/deny
+    usage: deny (-f FILENAME | NAME)
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: force
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+      - name: show-managed-fields
+  - name: cluster-info
+    usage: cluster-info
+  - name: cluster-info/dump
+    usage: dump
+    optionsgroups:
+    - options:
+      - name: namespaces
+      - name: pod-running-timeout
+    - name: Switches
+      options:
+      - name: all-namespaces
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: output-directory
+      - name: template
+      - name: show-managed-fields
+  - name: top
+    usage: top
+  - name: top/node
+    usage: node [NAME | -l label]
+    args:
+    - name: NAME
+      choice: opt
+    optionsgroups:
+    - options:
+      - name: selector
+      - name: sort-by
+      - name: no-headers
+    - options:
+      - name: heapster-namespace
+      - name: heapster-port
+    - options:
+      - name: heapster-scheme
+      - name: heapster-service
+    - name: Other options
+      options:
+      - name: show-capacity
+      - name: use-protocol-buffers
+  - name: top/pod
+    usage: pod [NAME | -l label]
+    args:
+    - name: NAME
+      choice: opt
+    optionsgroups:
+    - options:
+      - name: selector
+      - name: sort-by
+      - name: no-headers
+      - name: all-namespaces
+      - name: containers
+    - name: Other options
+      options:
+      - name: field-selector
+      - name: sum
+      - name: use-protocol-buffers
+  - name: cordon
+    usage: cordon NODE
+    args:
+    - name: NODE
+    optionsgroups:
+    - options:
+      - name: selector
+      - name: dry-run
+  - name: uncordon
+    usage: uncordon NODE
+    args:
+    - name: NODE
+    optionsgroups:
+    - options:
+      - name: selector
+      - name: dry-run
+  - name: drain
+    usage: drain NODE
+    args:
+    - name: NODE
+    optionsgroups:
+    - options:
+      - name: pod-selector
+      - name: selector
+    - name: Switches
+      options:
+      - name: delete-local-data
+      - name: disable-eviction
+      - name: force
+      - name: ignore-daemonsets
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: grace-period
+    - options:
+      - name: timeout
+      - name: skip-wait-for-delete-timeout
+    - name: Other options
+      options:
+      - name: chunk-size
+      - name: delete-emptydir-data
+  - name: taint
+    usage: taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1 ... KEY_N=VAL_N:TAINT_EFFECT_N
+    args:
+    - name: NODE
+    - name: NAME
+    - name: Key=Val:Taint
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: selector
+    - name: Switches
+      options:
+      - name: all
+      - name: overwrite
+      - name: validate
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+- name: Troubleshooting and Debugging Commands
+  commands:
+  - name: describe
+    usage: describe (-f FILENAME | TYPE [NAME_PREFIX | -l label] | TYPE/NAME)
+    args:
+    - name: TYPE[/]NamePrefix
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: all-namespaces
+      - name: recursive
+      - name: show-events
+    - name: Other options
+      options:
+      - name: chunk-size
+  - name: logs
+    usage: logs [-f] [-p] (POD | TYPE/NAME) [-c CONTAINER]
+    args:
+    - name: POD | TYPE/NAME
+    optionsgroups:
+    - name: Selection
+      options:
+      - name: container
+      - name: selector
+    - name: Switches
+      options:
+      - name: follow
+      - name: previous
+      - name: all-containers
+      - name: ignore-errors
+      - name: insecure-skip-tls-verify-backend
+    - options:
+      - name: prefix
+      - name: timestamps
+    - name: Other options
+      options:
+      - name: limit-bytes
+      - name: max-log-requests
+      - name: pod-running-timeout
+    - options:
+      - name: since
+      - name: since-time
+      - name: tail
+    - name: Other options
+      options:
+      - name: all-pods
+  - name: attach
+    usage: attach (POD | TYPE/NAME) -c CONTAINER
+    args:
+    - name: POD | TYPE/NAME
+    optionsgroups:
+    - options:
+      - name: container
+      - name: stdin
+      - name: tty
+      - name: pod-running-timeout
+      - name: quiet
+  - name: exec
+    usage: exec (POD | TYPE/NAME) [-c CONTAINER] [flags] -- COMMAND [args...]
+    args:
+    - name: POD | TYPE/NAME | -f FILENAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: container
+      - name: stdin
+      - name: tty
+      - name: pod-running-timeout
+      - name: quiet
+  - name: port-forward
+    usage: port-forward TYPE/NAME [options] [LOCAL_PORT:]REMOTE_PORT [...[LOCAL_PORT_N:]REMOTE_PORT_N]
+    args:
+    - name: TYPE/NAME
+    - name: '[LocalPort:]RemotePort'
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: address
+      - name: pod-running-timeout
+  - name: proxy
+    usage: proxy [--port=PORT] [--www=static-dir] [--www-prefix=prefix] [--api-prefix=prefix]
+    optionsgroups:
+    - options:
+      - name: port
+      - name: address
+      - name: unix-socket
+    - options:
+      - name: www
+      - name: www-prefix
+      - name: api-prefix
+    - options:
+      - name: accept-hosts
+      - name: accept-paths
+    - options:
+      - name: reject-methods
+      - name: reject-paths
+    - options:
+      - name: keepalive
+      - name: disable-filter
+    - name: Other options
+      options:
+      - name: append-server-path
+  - name: cp
+    usage: cp <file-spec-src> <file-spec-dest>
+    args:
+    - name: fileSpecSrc
+    - name: fileSpecDest
+    optionsgroups:
+    - options:
+      - name: container
+      - name: no-preserve
+      - name: retries
+  - name: auth
+    usage: auth
+  - name: auth/can-i
+    usage: can-i VERB [TYPE | TYPE/NAME | NONRESOURCEURL]
+    args:
+    - name: VERB
+    - name: TYPE | TYPE/NAME | NonResourceURL
+      choice: opt
+    optionsgroups:
+    - options:
+      - name: subresource
+      - name: all-namespaces
+      - name: quiet
+      - name: list
+      - name: no-headers
+  - name: auth/reconcile
+    usage: reconcile -f FILENAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - options:
+      - name: remove-extra-permissions
+      - name: remove-extra-subjects
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+    - name: Other options
+      options:
+      - name: show-managed-fields
+- name: Advanced Commands
+  commands:
+  - name: diff
+    usage: diff -f FILENAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: force-conflicts
+      - name: server-side
+    - name: Other options
+      options:
+      - name: field-manager
+    - name: Other options
+      options:
+      - name: concurrency
+      - name: prune
+      - name: prune-allowlist
+      - name: show-managed-fields
+  - name: apply
+    usage: apply (-f FILENAME | -k DIRECTORY)
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: force
+      - name: force-conflicts
+      - name: prune
+      - name: record
+    - options:
+      - name: server-side
+      - name: wait
+    - options:
+      - name: allow-missing-template-keys
+      - name: cascade
+      - name: openapi-patch
+    - options:
+      - name: overwrite
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: show-managed-fields
+      - name: grace-period
+      - name: prune-whitelist
+      - name: prune-allowlist
+    - options:
+      - name: timeout
+      - name: dry-run
+  - name: apply/edit-last-applied
+    usage: edit-last-applied (RESOURCE/NAME | -f FILENAME)
+    args:
+    - name: RESOURCE/NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: record
+      - name: windows-line-endings
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: field-manager
+      - name: show-managed-fields
+      - name: validate
+  - name: apply/set-last-applied
+    usage: set-last-applied -f FILENAME
+    optionsgroups:
+    - options:
+      - name: filename
+    - name: Switches
+      options:
+      - name: create-annotation
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: show-managed-fields
+  - name: apply/view-last-applied
+    usage: view-last-applied (TYPE [NAME | -l label] | TYPE/NAME | -f FILENAME)
+    args:
+    - name: TYPE[/]NAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+    - name: Output
+      options:
+      - name: output
+  - name: patch
+    usage: patch (-f FILENAME | TYPE NAME) [-p PATCH|--patch-file FILE]
+    args:
+    - name: TYPE
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: patch
+      - name: type
+    - name: Selection
+      options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: local
+      - name: record
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: patch-file
+      - name: show-managed-fields
+      - name: subresource
+  - name: replace
+    usage: replace -f FILENAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - name: Switches
+      options:
+      - name: recursive
+      - name: force
+      - name: save-config
+      - name: wait
+    - options:
+      - name: allow-missing-template-keys
+      - name: cascade
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: grace-period
+      - name: raw
+      - name: timeout
+      - name: field-manager
+      - name: show-managed-fields
+      - name: subresource
+  - name: wait
+    usage: wait ([-f FILENAME] | resource.group/resource.name | resource.group [(-l
+      label | --all)]) [--for=delete|--for condition=available|--for=jsonpath='{}'[=value]]
+    optionsgroups:
+    - options:
+      - name: for
+      - name: timeout
+    - name: Selection
+      options:
+      - name: filename
+      - name: selector
+      - name: field-selector
+    - name: Switches
+      options:
+      - name: all-namespaces
+      - name: all
+      - name: local
+      - name: allow-missing-template-keys
+      - name: recursive
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: show-managed-fields
+  - name: convert
+    usage: convert -f FILENAME
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: output-version
+    - name: Switches
+      options:
+      - name: recursive
+      - name: allow-missing-template-keys
+      - name: local
+      - name: validate
+    - name: Output
+      options:
+      - name: output
+      - name: template
+  - name: kustomize
+    usage: kustomize DIR
+    args:
+    - name: DIR
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: as-current-user
+      - name: enable-alpha-plugins
+      - name: enable-helm
+      - name: enable-managedby-label
+      - name: env
+      - name: helm-api-versions
+      - name: helm-command
+      - name: helm-kube-version
+      - name: load-restrictor
+      - name: mount
+      - name: network
+      - name: network-name
+      - name: output
+      - name: reorder
+- name: Settings Commands
+  commands:
+  - name: label
+    usage: label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=VAL_N
+      [--resource-version=version]
+    args:
+    - name: TYPE
+    - name: NAME
+    - name: key=val
+      end: true
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+    - options:
+      - name: selector
+      - name: field-selector
+      - name: resource-version
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: all-namespaces
+      - name: list
+      - name: local
+      - name: overwrite
+      - name: record
+    - options:
+      - name: allow-missing-template-keys
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: annotate
+    usage: annotate [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=VAL_N
+      [--resource-version=version]
+    args:
+    - name: TYPE
+    - name: NAME
+    - name: key=val
+      end: true
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: filename
+      - name: kustomize
+      - name: selector
+      - name: field-selector
+    - name: Switches
+      options:
+      - name: recursive
+      - name: all
+      - name: all-namespaces
+      - name: list
+      - name: local
+      - name: overwrite
+      - name: record
+    - options:
+      - name: allow-missing-template-keys
+    - name: Other options
+      options:
+      - name: resource-version
+      - name: output
+      - name: template
+    - options:
+      - name: dry-run
+      - name: field-manager
+      - name: show-managed-fields
+  - name: completion
+    usage: completion SHELL
+    args:
+    - name: SHELL
+- name: Other Commands
+  commands:
+  - name: alpha
+    usage: alpha
+  - name: alpha/debug
+    usage: debug NAME --image=image [ -- COMMAND [args...] ]
+    args:
+    - name: NAME
+    - name: --
+      end: true
+    - name: COMMAND
+      end: true
+    - name: args
+      end: true
+      choice: opt
+      rep: repeat
+    optionsgroups:
+    - options:
+      - name: image
+        required: true
+      - name: container
+      - name: target
+    - options:
+      - name: env
+      - name: image-pull-policy
+    - name: Copy
+      options:
+      - name: copy-to
+      - name: replace
+      - name: same-node
+      - name: share-processes
+    - name: Switches
+      options:
+      - name: stdin
+      - name: tty
+      - name: arguments-only
+      - name: attach
+      - name: quiet
+  - name: api-resources
+    usage: api-resources
+    optionsgroups:
+    - options:
+      - name: api-group
+      - name: categories
+      - name: verbs
+      - name: sort-by
+      - name: output
+    - name: Switches
+      options:
+      - name: cached
+      - name: no-headers
+      - name: namespaced
+  - name: api-versions
+    usage: api-versions
+  - name: config
+    usage: config SUBCOMMAND
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: kubeconfig
+  - name: config/current-context
+    usage: current-context
+  - name: config/delete-cluster
+    usage: delete-cluster NAME
+    args:
+    - name: NAME
+  - name: config/delete-context
+    usage: delete-context NAME
+    args:
+    - name: NAME
+  - name: config/get-clusters
+    usage: get-clusters
+  - name: config/get-contexts
+    usage: get-contexts [(-o|--output=)name)]
+    optionsgroups:
+    - options:
+      - name: output
+      - name: no-headers
+  - name: config/rename-context
+    usage: rename-context CONTEXT_NAME NEW_NAME
+    args:
+    - name: CONTEXT_NAME
+    - name: NEW_NAME
+  - name: config/set
+    usage: set PROPERTY_NAME PROPERTY_VALUE
+    args:
+    - name: PROPERTY_NAME
+    - name: PROPERTY_VALUE
+    optionsgroups:
+    - options:
+      - name: set-raw-bytes
+  - name: config/set-cluster
+    usage: set-cluster NAME [--server=server] [--certificate-authority=path/to/certificate/authority]
+      [--insecure-skip-tls-verify=true] [--tls-server-name=example.com]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: server
+        type: string
+        usage: server for the cluster entry in kubeconfig
+        shorthand: ""
+      - name: certificate-authority
+        type: string
+        usage: Path to certificate-authority file for the cluster entry in kubeconfig
+    - options:
+      - name: insecure-skip-tls-verify
+        type: tristate
+        usage: insecure-skip-tls-verify for the cluster entry in kubeconfig
+        default: "true"
+      - name: embed-certs
+        default: "true"
+    - name: Other options
+      options:
+      - name: proxy-url
+      - name: tls-server-name
+  - name: config/set-context
+    usage: set-context [NAME | --current] [--cluster=cluster_nickname] [--user=user_nickname]
+      [--namespace=namespace]
+    args:
+    - name: NAME
+    optionsgroups:
+    - options:
+      - name: current
+      - name: cluster
+        type: string
+        usage: cluster for the context entry in kubeconfig
+      - name: user
+        type: string
+        usage: user for the context entry in kubeconfig
+      - name: namespace
+        type: string
+        usage: namespace for the context entry in kubeconfig
+        shorthand: ""
+  - name: config/set-credentials
+    usage: set-credentials NAME [--client-certificate=path/to/certfile] [--client-key=path/to/keyfile]
+      [--token=bearer_token] [--username=basic_user] [--password=basic_password] [--auth-provider=provider_name]
+      [--auth-provider-arg=key=value] [--exec-command=exec_command] [--exec-api-version=exec_api_version]
+      [--exec-arg=arg] [--exec-env=key=value]
+    optionsgroups:
+    - name: Client certificate
+      options:
+      - name: client-certificate
+        usage: Path to client certificate file for the user entry in kubeconfig
+      - name: client-key
+        usage: Path to client key file for the user entry in kubeconfig
+    - name: Bearer token
+      options:
+      - name: token
+        usage: token for the user entry in kubeconfig
+    - name: Basic auth
+      options:
+      - name: username
+        usage: username for the user entry in kubeconfig
+      - name: password
+        usage: password for the user entry in kubeconfig
+    - name: Auth provider
+      options:
+      - name: auth-provider
+        usage: Auth provider for the user entry in kubeconfig
+      - name: auth-provider-arg
+        usage: '''key=value'' arguments for the auth provider'
+    - name: Exec credential plugin
+      options:
+      - name: exec-command
+        usage: Command for the exec credential plugin for the user entry in kubeconfig
+      - name: exec-api-version
+        usage: API version of the exec credential plugin for the user entry in kubeconfig
+    - options:
+      - name: exec-arg
+        usage: New arguments for the exec credential plugin command for the user entry
+          in kubeconfig
+      - name: exec-env
+        usage: '''key=value'' environment values for the exec credential plugin'
+    - name: Switches
+      options:
+      - name: embed-certs
+    - name: Other options
+      options:
+      - name: exec-interactive-mode
+      - name: exec-provide-cluster-info
+  - name: config/unset
+    usage: unset PROPERTY_NAME
+    args:
+    - name: PROPERTY_NAME
+  - name: config/use-context
+    usage: use-context CONTEXT_NAME
+    args:
+    - name: CONTEXT_NAME
+  - name: config/view
+    usage: view
+    optionsgroups:
+    - name: Switches
+      options:
+      - name: flatten
+      - name: minify
+      - name: raw
+      - name: allow-missing-template-keys
+      - name: merge
+    - name: Output
+      options:
+      - name: output
+      - name: template
+    - name: Other options
+      options:
+      - name: show-managed-fields
+  - name: plugin
+    usage: plugin [flags]
+  - name: plugin/list
+    usage: list
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: name-only
+  - name: version
+    usage: version
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: client
+      - name: short
+      - name: output
+  - name: options
+    usage: options
+- name: Other commands
+  commands:
+  - name: auth/whoami
+    usage: whoami
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: allow-missing-template-keys
+      - name: output
+      - name: show-managed-fields
+      - name: template
+  - name: config/delete-user
+    usage: delete-user NAME
+  - name: config/get-users
+    usage: get-users
+  - name: create/ingress
+    usage: 'ingress NAME --rule=host/path=service:port[,tls[=secret]] '
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: allow-missing-template-keys
+      - name: annotation
+      - name: class
+      - name: default-backend
+      - name: dry-run
+      - name: field-manager
+      - name: output
+      - name: rule
+      - name: save-config
+      - name: show-managed-fields
+      - name: template
+      - name: validate
+  - name: create/token
+    usage: token SERVICE_ACCOUNT_NAME
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: allow-missing-template-keys
+      - name: audience
+      - name: bound-object-kind
+      - name: bound-object-name
+      - name: bound-object-uid
+      - name: duration
+      - name: output
+      - name: show-managed-fields
+      - name: template
+  - name: debug
+    usage: debug (POD | TYPE[[.VERSION].GROUP]/NAME) [ -- COMMAND [args...] ]
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: arguments-only
+      - name: attach
+      - name: container
+      - name: copy-to
+      - name: custom
+      - name: env
+      - name: filename
+      - name: image
+      - name: image-pull-policy
+      - name: keep-annotations
+      - name: keep-init-containers
+      - name: keep-labels
+      - name: keep-liveness
+      - name: keep-readiness
+      - name: keep-startup
+      - name: profile
+      - name: quiet
+      - name: replace
+      - name: same-node
+      - name: set-image
+      - name: share-processes
+      - name: stdin
+      - name: target
+      - name: tty
+  - name: events
+    usage: events [(-o|--output=)json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file]
+      [--for TYPE/NAME] [--watch] [--types=Normal,Warning]
+    optionsgroups:
+    - name: Other options
+      options:
+      - name: all-namespaces
+      - name: allow-missing-template-keys
+      - name: chunk-size
+      - name: for
+      - name: no-headers
+      - name: output
+      - name: show-managed-fields
+      - name: template
+      - name: types
+      - name: watch
